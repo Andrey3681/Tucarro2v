@@ -5,16 +5,22 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
+
 public class SendMail {
-    public static void main(String[] args) {
+
+    public static void enviarCorreo(String correo, String contraseña) {
         // Información de autenticación
-        final String username = "soportetucarrouniquindio@gmail.com\n";
+        final String username = "soportetucarrouniquindio@gmail.com";
         final String password = "123456Tucarro$";
 
         // Información del correo electrónico
-        String to = "destinatario@dominio.com";
-        String subject = "Asunto del correo";
-        String body = "Contenido del correo electrónico.";
+
+        //destinatario llega por el metodo recuperar
+        String to = correo;
+        // lo que vamos a realizar
+        String subject = "Recuperacion de la contraseña";
+        //aca adjuntamos la contraseña que vamos a enviar
+        String body = "Su contraseña es " + contraseña;
 
         // Configuración de la conexión SMTP
         Properties props = new Properties();
@@ -33,10 +39,10 @@ public class SendMail {
         try {
             // Creación del mensaje
             Message message = new MimeMessage(session);
-             message.setFrom(new InternetAddress(username));
-             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-             message.setSubject(subject);
-             message.setText(body);
+            message.setFrom(new InternetAddress(username));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            message.setSubject(subject);
+            message.setText(body);
 
             // Envío del mensaje
             Transport.send(message);
