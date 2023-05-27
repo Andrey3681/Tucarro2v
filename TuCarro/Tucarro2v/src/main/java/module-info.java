@@ -4,6 +4,7 @@ module com.example.tucarro2v {
 
     requires org.controlsfx.controls;
     requires mail;
+    requires javax.jms.api;
 
     opens com.example.tucarro2v to javafx.fxml;
 }
